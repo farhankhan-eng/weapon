@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weapon Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d0d0d;
+      color: #f2f2f2;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #f2f2f2;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navbar - Transparent */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: transparent;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: background-color 0.3s;
+    }
+
+    .navbar.scrolled {
+      background-color: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+ .logo img {
+  height: 50px;
+  width: 120px;
+  display: block;
+}
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      position: relative;
+      padding: 5px 0;
+    }
+
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #ff0000;
+      transition: width 0.3s;
+    }
+
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-icons i {
+      font-size: 20px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .nav-icons i:hover {
+      color: #ff0000;
+    }
+
+    /* Hero Section */
+    .hero {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('weapon1.webp');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-text {
+      color: white;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      padding: 12px 25px;
+      font-size: 16px;
+      background-color: #ff0000;
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      border-radius: 4px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero button:hover {
+      background-color: #b30000;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 80px 0;
+      background-color: #111;
+    }
+
+    .features-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .feature {
+      text-align: center;
+      max-width: 250px;
+    }
+
+    .feature i {
+      font-size: 40px;
+      color: #ff0000;
+      margin-bottom: 20px;
+    }
+
+    .feature h3 {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+
+
+
+
+
+    .cards-section {
+      padding: 80px 0;
+      text-align: center;
+      background-color: #111;
+    }
+
+    .section-title {
+      margin-bottom: 40px;
+      font-size: 32px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: #ff0000;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .card {
+      background-color: #111;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background-color: #ff0000;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      transition: transform 0.5s;
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #ff0000;
+      font-size: 22px;
+    }
+
+    .card p {
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+
+    .card-price {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .card button {
+      padding: 10px 20px;
+      background-color: transparent;
+      border: 2px solid #ff0000;
+      color: #ff0000;
+      cursor: pointer;
+      transition: 0.3s;
+      border-radius: 4px;
+      font-weight: bold;
+      width: 100%;
+    }
+
+    .card button:hover {
+      background-color: #ff0000;
+      color: white;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(255, 0, 0, 0.2);
+    }
+
+    /* Categories Section - Centered with Background Image */
+    .categories {
+      padding: 100px 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('weapon1.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      text-align: center;
+    }
+
+    .categories-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .category {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+ .category img {
+  width: 100%;
+  height: 100%;
+   /* ✅ Full image without crop */
+  background-color: #000; /* Optional: adds background fill */
+  transition: transform 0.5s;
+}
+
+    .category-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0; /* Start with hidden text */
+      transition: opacity 0.3s ease;
+    }
+
+    .category:hover {
+      transform: scale(1.05);
+    }
+
+    .category:hover img {
+      transform: scale(1.1);
+    }
+
+    .category:hover .category-overlay {
+      opacity: 1; /* Show text on hover */
+    }
+    .cards-section {
+  padding: 80px 0;
+  text-align: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+              url('https://images.unsplash.com/photo-1604152135912-04a232b07d56?auto=format&fit=crop&w=1950&q=80'); /* ✅ Replace with your image */
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll; /* 👈 Scroll ke sath chale */
+}
+
+    /* Testimonials - Centered with Background Image */
+        /* Cards Section */
+.testimonials {
+  padding: 100px 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+              url('weapon1.webp'); /* <-- Yahan apna link daalna */
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll; /* Scroll ke sath chalega */
+  text-align: center;
+}
+
+
+
+    .testimonials {
+      padding: 100px 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1581091226825-c6d2d8e4e8c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      text-align: center;
+    }
+
+    .testimonials-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .testimonial {
+      background-color: rgba(28, 28, 28, 0.8);
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 350px;
+      position: relative;
+      backdrop-filter: blur(5px);
+      transition: transform 0.3s;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
+    }
+
+    .testimonial::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 60px;
+      color: #ff0000;
+      opacity: 0.3;
+      font-family: Georgia, serif;
+    }
+
+    .testimonial p {
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .testimonial-author img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+
+    .author-info h4 {
+      color: #ff0000;
+      margin-bottom: 5px;
+    }
+
+    /* Newsletter */
+    .newsletter {
+      padding: 80px 0;
+      background-color: #111;
+      text-align: center;
+    }
+
+    .newsletter-form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 4px 0 0 4px;
+      font-size: 16px;
+    }
+
+    .newsletter-form button {
+      padding: 12px 25px;
+      background-color: #ff0000;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 0 4px 4px 0;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .newsletter-form button:hover {
+      background-color: #b30000;
+    }
+
+    /* Footer */
+    footer {
+      padding: 50px 0 20px;
+      background-color: #1a1a1a;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-column h3 {
+      color: #ff0000;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a:hover {
+      color: #ff0000;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: #333;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      background-color: #ff0000;
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      color: #888;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .nav-links {
+        gap: 15px;
+      }
+      
+      .hero h1 {
+        font-size: 40px;
+      }
+      
+      .hero p {
+        font-size: 18px;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+      }
+      
+      .newsletter-form input {
+        border-radius: 4px;
+        margin-bottom: 10px;
+      }
+      
+      .newsletter-form button {
+        border-radius: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+  <img src="logo-removebg-preview.png" alt="WeaponZone Logo">
+</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+         <li><a href="about.html">About</a></li>
+        <li><a href="#">Weapons</a></li>
+        <li><a href="#">Categories</a></li>
+       
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-icons">
+        <i class="fas fa-search"></i>
+        <i class="fas fa-shopping-cart"></i>
+        <i class="fas fa-user"></i>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Arm Yourself</h1>
+      <p>Explore the most powerful weapons from around the world. Premium quality, competitive prices, and fast delivery.</p>
+      <button onclick="alert('Redirecting to Shop...')">Shop Now</button>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <div class="features-container">
+        <div class="feature">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Premium Quality</h3>
+          <p>All our weapons are tested and certified for maximum reliability.</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-shipping-fast"></i>
+          <h3>Fast Delivery</h3>
+          <p>Discreet and secure shipping to your location within 3-5 days.</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-lock"></i>
+          <h3>Secure Payment</h3>
+          <p>Your transactions are protected with military-grade encryption.</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-headset"></i>
+          <h3>24/7 Support</h3>
+          <p>Our expert team is available round the clock to assist you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="categories">
+    <div class="container">
+      <h2 class="section-title">Weapon Categories</h2>
+      <div class="categories-container">
+        <div class="category">
+          <img src="images (3).jpg" alt="Handguns" />
+          <div class="category-overlay">Handguns</div>
+        </div>
+        <div class="category">
+          <img src="images (4).jpg" alt="Rifles" />
+          <div class="category-overlay">Rifles</div>
+        </div>
+        <div class="category">
+          <img src="download (2).jpg" alt="Knives" />
+          <div class="category-overlay">Snipper</div>
+        </div>
+        <div class="category">
+          <img src="download.jpg" alt="Shotguns" />
+          <div class="category-overlay">Shotguns</div>
+        </div>
+        <div class="category">
+          <img src="images (8).jpg" alt="Tactical Gear" />
+          <div class="category-overlay">Tactical Gear</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cards-section">
+    <div class="container">
+      <h2 class="section-title">Featured Weapons</h2>
+      <div class="cards-container">
+        <div class="card">
+          <img src="download (3).jpg" alt="Pistol" />
+          <h3>Glock 19</h3>
+          <p>Lightweight and easy to carry for quick defense. Perfect for concealed carry.</p>
+          <div class="card-price">$549.99</div>
+          <button onclick="alert('Added to Cart: Glock 19')">Add to Cart</button>
+        </div>
+        <div class="card">
+          <img src="download (4).jpg" alt="Rifle" />
+          <h3>AR-15 Rifle</h3>
+          <p>Perfect for long range precision and power. Customizable with various attachments.</p>
+          <div class="card-price">$1,199.99</div>
+          <button onclick="alert('Added to Cart: AR-15 Rifle')">Add to Cart</button>
+        </div>
+        <div class="card">
+          <img src="download (6).jpg" alt="Knife" />
+          <h3>Desert Eagle</h3>
+          <p>Silent but deadly. Ideal for close combat. High-carbon steel blade.</p>
+          <div class="card-price">$89.99</div>
+          <button onclick="alert('Added to Cart: Combat Knife')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">Customer Reviews</h2>
+      <div class="testimonials-container">
+        <div class="testimonial">
+          <p>"WeaponZone has the best selection of firearms I've ever seen. Their customer service is exceptional and delivery was faster than expected."</p>
+          <div class="testimonial-author">
+            <img src="download (7).jpg" alt="John D." />
+            <div class="author-info">
+              <h4>John D.</h4>
+              <span>Security Professional</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>"I've purchased multiple weapons from WeaponZone and each one has been in perfect condition. Highly recommended for any serious collector."</p>
+          <div class="testimonial-author">
+            <img src="download (8).jpg" alt="Sarah M." />
+            <div class="author-info">
+              <h4>Sarah M.</h4>
+              <span>Firearms Instructor</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>"The quality of their products is unmatched. Fast shipping and discreet packaging. Will definitely be a returning customer."</p>
+          <div class="testimonial-author">
+            <img src="images (10).jpg" alt="Mike R." />
+            <div class="author-info">
+              <h4>Mike R.</h4>
+              <span>Law Enforcement</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <div class="container">
+      <h2 class="section-title">Stay Updated</h2>
+      <p>Subscribe to our newsletter for the latest products and exclusive deals.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>WeaponZone</h3>
+          <p>Your trusted partner for premium weapons and tactical gear since 2010.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Customer Service</h3>
+          <ul>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <ul>
+            <li><i class="fas fa-map-marker-alt"></i> 123 Tactical Street, USA</li>
+            <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+            <li><i class="fas fa-envelope"></i> info@weaponzone.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 WeaponZone. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple script for newsletter form submission
+    document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input[type="email"]').value;
+      alert(`Thank you for subscribing with: ${email}`);
+      this.reset();
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
