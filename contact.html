@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Us - WeaponZone</title>
+  <title>AAA ARMOURY</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     /* Reset & base */
@@ -14,11 +14,10 @@
     }
 
     body {
-      font-family: 'Orbitron', 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d0d0d;
       color: #f2f2f2;
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
     a {
@@ -48,21 +47,19 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      transition: all 0.3s;
+      transition: background-color 0.3s;
     }
 
     .navbar.scrolled {
-      background-color: rgba(13, 13, 13, 0.95);
+      background-color: rgba(26, 26, 26, 0.95);
       backdrop-filter: blur(10px);
-      box-shadow: 0 5px 20px rgba(255, 0, 0, 0.2);
     }
 
-    .logo img {
-      height: 50px;
-      width: 120px;
-      display: block;
-      filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.5));
-    }
+ .logo img {
+  height: 50px;
+  width: 120px;
+  display: block;
+}
 
     .nav-links {
       display: flex;
@@ -72,10 +69,6 @@
     .nav-links li a {
       position: relative;
       padding: 5px 0;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 14px;
     }
 
     .nav-links li a::after {
@@ -85,7 +78,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, #ff0000, #ff6b6b);
+      background-color: #ff0000;
       transition: width 0.3s;
     }
 
@@ -101,13 +94,11 @@
     .nav-icons i {
       font-size: 20px;
       cursor: pointer;
-      transition: all 0.3s;
-      position: relative;
+      transition: color 0.3s;
     }
 
     .nav-icons i:hover {
       color: #ff0000;
-      transform: translateY(-2px);
     }
 
     /* Contact Hero Section */
@@ -160,7 +151,7 @@
     }
 
     /* Contact Content Section */
-   .contact-content {
+    .contact-content {
       padding: 100px 0;
       background: linear-gradient(135deg, #111 0%, #0a0a0a 100%);
     }
@@ -198,25 +189,53 @@
       background: linear-gradient(90deg, #ff0000, #ff6b6b);
       border-radius: 2px;
     }
-    
-    /* Contact Image */
-    .contact-image {
-      width: 100%;
-      margin-top: 30px;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 15px 30px rgba(255, 0, 0, 0.2);
+
+    /* Contact Info Cards */
+    .info-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      margin-top: 40px;
     }
 
-    .contact-image img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      transition: transform 0.5s;
+    .info-card {
+      display: flex;
+      align-items: center;
+      padding: 25px;
+      background: rgba(28, 28, 28, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      transition: all 0.3s;
     }
 
-    .contact-image:hover img {
-      transform: scale(1.05);
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255, 0, 0, 0.2);
+    }
+
+    .info-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, #ff0000, #b30000);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      font-size: 24px;
+    }
+
+    .info-content h3 {
+      color: #ff0000;
+      margin-bottom: 5px;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .info-content p {
+      color: #ccc;
+      font-size: 16px;
     }
 
     /* Contact Form */
@@ -302,7 +321,7 @@
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 15px 30px rgba(255, 0, 0, 0.2);
-      height: 500px;
+      height: 400px;
     }
 
     .map-placeholder {
@@ -310,33 +329,74 @@
       height: 100%;
       background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .map-title {
       color: #ff0000;
-      font-size: 28px;
-      margin-bottom: 15px;
+      font-size: 24px;
       text-transform: uppercase;
       letter-spacing: 2px;
     }
 
-    .map-address {
-      font-size: 18px;
-      margin-bottom: 10px;
-      color: #ccc;
+    /* FAQ Section */
+    .faq-section {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #111 0%, #0a0a0a 100%);
     }
 
-    .map-icon {
-      font-size: 60px;
-      color: #ff0000;
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
       margin-bottom: 20px;
-      text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+      background: rgba(28, 28, 28, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .faq-item:hover {
+      box-shadow: 0 10px 25px rgba(255, 0, 0, 0.2);
+    }
+
+    .faq-question {
+      padding: 25px;
+      background: linear-gradient(45deg, #1c1c1c, #252525);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s;
+    }
+
+    .faq-question:hover {
+      background: linear-gradient(45deg, #252525, #2a2a2a);
+    }
+
+    .faq-question h3 {
+      color: #ff0000;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .faq-answer {
+      padding: 0 25px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-answer p {
+      color: #ccc;
+      padding: 20px 0;
+      font-size: 16px;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
     }
 
     /* Footer */
@@ -448,8 +508,7 @@
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="weapons.html">Weapons</a></li>
-        <li><a href="categories.html">Categories</a></li>
+        <li><a href="galery.html">Weapons</a></li>
         <li><a href="contact.html" style="color: #ff0000;">Contact</a></li>
       </ul>
       <div class="nav-icons">
@@ -473,12 +532,48 @@
         <div class="contact-info">
           <h2 class="section-title">Get In Touch</h2>
           <p style="color: #ccc; margin-bottom: 30px;">We're here to assist you with any questions about our products, services, or orders. Reach out to us through any of the following channels.</p>
-            <div class="contact-image">
-            <img src="weapon1.webp" alt="Contact Us">
+          
+          <div class="info-cards">
+            <div class="info-card">
+              <div class="info-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="info-content">
+                <h3>Our Location</h3>
+                <p>karachi<br></p>
+              </div>
+            </div>
+            
+            <div class="info-card">
+              <div class="info-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="info-content">
+                <h3>Phone Number</h3>
+                <p>+92 3121993999<br>+92 3455078724</p>
+              </div>
+            </div>
+            
+            <div class="info-card">
+              <div class="info-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="info-content">
+                <h3>Email Address</h3>
+                <p>AAA ARMOURY@gmail.com<br>AAA ARMOURY@gmail.com</p>
+              </div>
+            </div>
+            
+            <div class="info-card">
+              <div class="info-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="info-content">
+                <h3>Business Hours</h3>
+                <p>Monday - Friday: 9AM - 6PM<br>Saturday: 10AM - 4PM</p>
+              </div>
+            </div>
           </div>
-        </div>
-        
-          <!-- Contact information removed as requested -->
         </div>
         
         <div class="contact-form">
@@ -517,32 +612,32 @@
       </div>
     </div>
   </section>
-
-  <section class="map-section">
-    <div class="container">
-      <h2 class="section-title" style="text-align: center; width: 100%; margin-bottom: 50px;">Our Location</h2>
-      <div class="map-container">
-        <div class="map-placeholder">
-          <div class="map-icon">
-            <i class="fas fa-map-marked-alt"></i>
-          </div>
-          <h3 class="map-title">Metro Stargate</h3>
-          <p class="map-address">123 Tactical Street, Metro Stargate</p>
-          <p class="map-address">Security District, USA 12345</p>
-          <p style="color: #ff6b6b; margin-top: 15px; font-size: 16px;">
-            <i class="fas fa-subway" style="margin-right: 8px;"></i>
-            Metro Stargate Station - 5 min walk
-          </p>
-        </div>
-      </div>
+<section class="map-section">
+  <div class="container">
+    <h2 class="section-title" style="text-align: center; width: 100%; margin-bottom: 50px;">Our Location</h2>
+    <div class="map-container" style="width: 100%; height: 450px; border-radius: 8px; overflow: hidden;">
+      <!-- Google Maps Embed -->
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.901086521591!2d67.16538407519965!3d24.88272254499706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33eebd1dc58d9%3A0x54a846748e1205b3!2sMetro%20Star%20Gate%2C%20Karachi!5e0!3m2!1sen!2sus!4v1704204103547!5m2!1sen!2sus" 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
-  </section>
+  </div>
+</section>
+
+
+
 
   <footer>
     <div class="container">
       <div class="footer-container">
         <div class="footer-column">
-          <h3>WeaponZone</h3>
+          <h3>AAA ARMOURY</h3>
           <p>Your trusted partner for premium weapons and tactical gear since 2010.</p>
           <div class="social-icons">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -555,9 +650,8 @@
           <h3>Quick Links</h3>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="weapons.html">Weapons</a></li>
-            <li><a href="categories.html">Categories</a></li>
+             <li><a href="about.html">About Us</a></li>
+            <li><a href="galery.html">Weapon</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -574,18 +668,17 @@
         <div class="footer-column">
           <h3>Contact Us</h3>
           <ul>
-            <li><i class="fas fa-map-marker-alt"></i> Metro Stargate, USA</li>
-            <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-            <li><i class="fas fa-envelope"></i> info@weaponzone.com</li>
+            <li><i class="fas fa-map-marker-alt"></i> Karachi</li>
+            <li><i class="fas fa-phone"></i>+92 3121993999</li>
+            <li><i class="fas fa-envelope"></i> AAA ARMOURY@gmail.com</li>
           </ul>
         </div>
       </div>
       <div class="copyright">
-        <p>&copy; 2025 WeaponZone. All rights reserved.</p>
+             <p>&copy; 2025 AAA ARMOURY. All rights reserved.</p>
       </div>
     </div>
   </footer>
-
   <script>
     // Navbar scroll effect
     window.addEventListener('scroll', function() {
@@ -602,6 +695,15 @@
       e.preventDefault();
       alert('Thank you for your message! We will get back to you within 24 hours.');
       this.reset();
+    });
+
+    // FAQ functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      question.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
     });
   </script>
 </body>
